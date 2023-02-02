@@ -44,7 +44,7 @@ onMounted(async () => {
       :key="character.id"
       class="character fadeInUpBig"
     >
-      <div class="character transition">
+      <div class="transition">
         <div class="img-overflow">
           <img
             :src="
@@ -59,7 +59,6 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-    <div id="intersect"></div>
   </main>
 </template>
 <style lang="css" scoped>
