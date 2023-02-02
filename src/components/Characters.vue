@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 
+import { useRouter } from "vue-router";
+
 import { getAllCharacters } from "@/services/charactersService";
 import infiniteScroll from "@/utils/infiniteScroll";
 
@@ -12,6 +14,8 @@ interface ICharacter {
     extension: string;
   };
 }
+
+const router = useRouter();
 
 const currentPage = ref(0);
 const characters = ref<ICharacter[] | []>([]);
@@ -43,6 +47,7 @@ onMounted(async () => {
       v-for="character in characters"
       :key="character.id"
       class="character fadeInUpBig"
+      @click="router.push('details/character/' + character.id)"
     >
       <div class="transition">
         <div class="img-overflow">
