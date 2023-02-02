@@ -5,6 +5,7 @@ import { TrinityRingsSpinner } from "epic-spinners";
 import { getCharacterById } from "@/services/charactersService";
 
 import type { ICharacter } from "@/interfaces/Character";
+import Biography from "./Biography.vue";
 
 const { id } = defineProps({
   id: { type: Number, default: 0 },
@@ -23,12 +24,12 @@ onMounted(async () => {
         :src="character.thumbnail.path + '.' + character.thumbnail.extension"
         alt="img"
       />
-
       <div class="name">
         <h1>{{ character.name }}</h1>
       </div>
+      <div class="row" />
     </div>
-    <div class="box"></div>
+    <Biography :description="character.description" />
   </div>
 
   <div v-else class="spinner">
@@ -41,6 +42,7 @@ onMounted(async () => {
 </template>
 <style scoped lang="css">
 .main {
+  position: relative;
   height: 350px;
   width: 100%;
   background-color: rgb(10, 10, 10);
@@ -67,9 +69,9 @@ onMounted(async () => {
   text-transform: uppercase;
   font-size: 24px;
 }
-.box {
+.row {
   right: 0;
-  margin-top: -90px;
+  bottom: 0;
   position: absolute;
   width: 0;
   height: 0;

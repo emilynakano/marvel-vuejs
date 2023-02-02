@@ -5,6 +5,7 @@ interface ICharacter {
     path: string;
     extension: string;
   };
+  description: string;
 }
 
 export type { ICharacter };
