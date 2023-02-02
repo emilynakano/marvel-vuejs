@@ -2,7 +2,10 @@
 import { onMounted, ref } from "vue";
 import { TrinityRingsSpinner } from "epic-spinners";
 
-import { getCharacterById } from "@/services/charactersService";
+import {
+  getCharacterById,
+  getCharacterMovies,
+} from "@/services/charactersService";
 
 import type { ICharacter } from "@/interfaces/Character";
 import Biography from "./Biography.vue";
@@ -12,10 +15,14 @@ const { id } = defineProps({
 });
 
 const character = ref<ICharacter | null>(null);
+const movies = ref(null);
 onMounted(async () => {
   const dataCharacter = await getCharacterById(id);
+  const dataMovies = await getCharacterMovies(id);
   character.value = dataCharacter;
+  movies.value = dataMovies;
 });
+console.log(movies);
 </script>
 <template>
   <div class="container" v-if="character">
