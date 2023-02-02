@@ -83,7 +83,7 @@ main {
   position: relative;
 
   width: 160px;
-  background-color: #1b1b1b;
+  background-color: var(--background);
   border-bottom-right-radius: 20px;
 
   overflow: hidden;
@@ -92,7 +92,7 @@ main {
 .row {
   widows: 100%;
   height: 4px;
-  background-color: rgb(197, 12, 12);
+  background-color: var(--details);
 }
 
 .img-overflow {
@@ -113,7 +113,7 @@ img {
 h1 {
   font-size: 15px;
   font-weight: 800;
-  color: white;
+  color: var(--text-light);
   width: 110px;
   white-space: nowrap;
   overflow: hidden;
@@ -123,10 +123,10 @@ h1 {
 
 .transition {
   background: linear-gradient(
-    #1b1b1b,
+    var(--background),
     #252525 50%,
     rgb(219, 45, 45) 50%,
-    rgb(197, 12, 12)
+    var(--details)
   );
   background-size: 100% 200%;
   transition: background 0.7s;

@@ -25,4 +25,11 @@ onMounted(async () => {
     />
   </div>
 </template>
-<style scoped lang="css"></style>
+<style scoped lang="css">
+.spinner {
+  height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

@@ -16,11 +16,6 @@ const id = Number(params.id);
 <style scoped lang="css">
 main {
   padding: 75px 0 20px 0;
-}
-.spinner {
-  height: calc(100vh - 100px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--background-light);
 }
 </style>
