@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
+
 import { getAllCharacters } from "@/services/charactersService";
+import infiniteScroll from "@/utils/infiniteScroll";
 
 interface ICharacter {
   id: number;
@@ -11,18 +13,38 @@ interface ICharacter {
   };
 }
 
+const currentPage = ref(0);
 const characters = ref<ICharacter[] | []>([]);
+
 onMounted(async () => {
   const data = await getAllCharacters(0);
   characters.value = data.filter(
     (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
   );
 });
+
+watch(currentPage, async () => {
+  const newData = await getAllCharacters(currentPage.value);
+  characters.value = [
+    ...characters.value,
+    ...newData.filter(
+      (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
+    ),
+  ];
+});
+
+onMounted(async () => {
+  infiniteScroll({ currentPage: currentPage, increment: 25 });
+});
 </script>
 <template>
   <main v-if="characters">
-    <div v-for="character in characters" :key="character.id" class="character">
-      <div class="character transition">
+    <div
+      v-for="character in characters"
+      :key="character.id"
+      class="character fadeInUpBig"
+    >
+      <div class="transition">
         <div class="img-overflow">
           <img
             :src="
