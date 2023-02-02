@@ -2,7 +2,7 @@
 import { useRoute } from "vue-router";
 
 import Header from "@/components/Header.vue";
-import CharacterDetailsVue from "@/components/CharacterDetails.vue";
+import CharacterDetails from "@/components/CharacterDetails.vue";
 
 const { params } = useRoute();
 const id = Number(params.id);
@@ -10,7 +10,7 @@ const id = Number(params.id);
 <template>
   <Header />
   <main>
-    <CharacterDetailsVue :id="id" />
+    <CharacterDetails :id="id" />
   </main>
 </template>
 <style scoped lang="css">

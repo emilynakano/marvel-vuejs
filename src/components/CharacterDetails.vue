@@ -3,11 +3,13 @@ import { getCharacterById } from "@/services/charactersService";
 import { TrinityRingsSpinner } from "epic-spinners";
 import { onMounted, ref } from "vue";
 
+import type { ICharacter } from "@/interfaces/Character";
+
 const { id } = defineProps({
   id: { type: Number, default: 0 },
 });
 
-let characterInfo = ref(null);
+let characterInfo = ref<ICharacter | null>(null);
 onMounted(async () => {
   const data = await getCharacterById(id);
   characterInfo.value = data;

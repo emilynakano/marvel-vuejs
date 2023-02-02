@@ -6,14 +6,7 @@ import { useRouter } from "vue-router";
 import { getAllCharacters } from "@/services/charactersService";
 import infiniteScroll from "@/utils/infiniteScroll";
 
-interface ICharacter {
-  id: number;
-  name: string;
-  thumbnail: {
-    path: string;
-    extension: string;
-  };
-}
+import type { ICharacter } from "@/interfaces/Character";
 
 const router = useRouter();
 
