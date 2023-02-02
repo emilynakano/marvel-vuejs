@@ -4,7 +4,7 @@ import { TrinityRingsSpinner } from "epic-spinners";
 import { useRoute } from "vue-router";
 
 const { params } = useRoute();
-const id = params.id;
+const id = Number(params.id);
 </script>
 <template>
   <Header />
