@@ -15,7 +15,6 @@ const id = Number(params.id);
 </template>
 <style scoped lang="css">
 main {
-  padding: 75px 0 20px 0;
-  background-color: var(--background-light);
+  padding: 60px 0 20px 0;
 }
 </style>
