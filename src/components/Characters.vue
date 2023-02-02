@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { getAllCharacters } from "@/services/charactersService";
 
 interface ICharacter {
@@ -11,12 +11,36 @@ interface ICharacter {
   };
 }
 
+const currentPage = ref(0);
 const characters = ref<ICharacter[] | []>([]);
+
 onMounted(async () => {
   const data = await getAllCharacters(0);
   characters.value = data.filter(
     (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
   );
+});
+watch(currentPage, async () => {
+  const newData = await getAllCharacters(currentPage.value);
+  characters.value = [
+    ...characters.value,
+    ...newData.filter(
+      (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
+    ),
+  ];
+});
+onMounted(async () => {
+  const intersectionObserver = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) {
+      console.log("Sentinela appears!");
+      currentPage.value += 25;
+    }
+  });
+  const intersect = document.querySelector("#intersect");
+  if (intersect) {
+    intersectionObserver.observe(intersect);
+  }
+  return () => intersectionObserver.disconnect();
 });
 </script>
 <template>
@@ -37,6 +61,7 @@ onMounted(async () => {
         </div>
       </div>
     </div>
+    <div id="intersect"></div>
   </main>
 </template>
 <style lang="css" scoped>
