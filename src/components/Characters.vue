@@ -39,7 +39,7 @@ onMounted(async () => {
     </div>
   </main>
 </template>
-<style lang="css">
+<style lang="css" scoped>
 main {
   display: flex;
   flex-wrap: wrap;
@@ -103,7 +103,6 @@ h1 {
   );
   background-size: 100% 200%;
   transition: background 0.7s;
-  z-index: 1;
 }
 
 .transition:hover {
