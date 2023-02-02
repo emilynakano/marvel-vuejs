@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import handleScroll from "@/utils/handleScroll";
+import handleScroll from "@/utils/handleScrollHeader";
 import { onMounted } from "vue";
 import logo from "../assets/images/logo.png";
 

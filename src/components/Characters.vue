@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
+
 import { getAllCharacters } from "@/services/charactersService";
+import infiniteScroll from "@/utils/infiniteScroll";
 
 interface ICharacter {
   id: number;
@@ -20,6 +22,7 @@ onMounted(async () => {
     (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
   );
 });
+
 watch(currentPage, async () => {
   const newData = await getAllCharacters(currentPage.value);
   characters.value = [
@@ -29,18 +32,9 @@ watch(currentPage, async () => {
     ),
   ];
 });
+
 onMounted(async () => {
-  const intersectionObserver = new IntersectionObserver((entries) => {
-    if (entries.some((entry) => entry.isIntersecting)) {
-      console.log("Sentinela appears!");
-      currentPage.value += 25;
-    }
-  });
-  const intersect = document.querySelector("#intersect");
-  if (intersect) {
-    intersectionObserver.observe(intersect);
-  }
-  return () => intersectionObserver.disconnect();
+  infiniteScroll({ currentPage: currentPage, increment: 25 });
 });
 </script>
 <template>
