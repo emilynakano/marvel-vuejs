@@ -22,7 +22,7 @@ onMounted(async () => {
 <template>
   <main v-if="characters">
     <div v-for="character in characters" :key="character.id" class="character">
-      <div class="character">
+      <div class="character transition">
         <div class="img-overflow">
           <img
             :src="
@@ -92,5 +92,26 @@ h1 {
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: uppercase;
+}
+
+.transition {
+  background: linear-gradient(
+    #1b1b1b,
+    #252525 50%,
+    rgb(219, 45, 45) 50%,
+    rgb(197, 12, 12)
+  );
+  background-size: 100% 200%;
+  transition: background 0.7s;
+  z-index: 1;
+}
+
+.transition:hover {
+  cursor: pointer;
+  background-position: 100% 100%;
+}
+
+.transition:hover img {
+  transform: scale(1.1);
 }
 </style>
