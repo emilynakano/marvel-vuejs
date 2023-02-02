@@ -13,8 +13,8 @@ const { id } = defineProps({
 
 const character = ref<ICharacter | null>(null);
 onMounted(async () => {
-  const data = await getCharacterById(id);
-  character.value = data;
+  const dataCharacter = await getCharacterById(id);
+  character.value = dataCharacter;
 });
 </script>
 <template>
@@ -28,6 +28,9 @@ onMounted(async () => {
         <h1>{{ character.name }}</h1>
       </div>
       <div class="row" />
+    </div>
+    <div class="mobile-title">
+      <h1>{{ character.name }}</h1>
     </div>
     <Biography :description="character.description" />
   </div>
@@ -64,9 +67,10 @@ onMounted(async () => {
   justify-content: center;
 }
 
-.main .name h1 {
+h1 {
   color: var(--text-light);
   text-transform: uppercase;
+  font-weight: bold;
   font-size: 24px;
 }
 .row {
@@ -85,5 +89,29 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mobile-title {
+  display: none;
+}
+@media screen and (max-width: 650px) {
+  .main {
+    align-items: center;
+    justify-content: center;
+    padding-left: 0px;
+  }
+  .main .name {
+    display: none;
+  }
+  .mobile-title {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 25px;
+  }
+  h1 {
+    color: black;
+  }
 }
 </style>

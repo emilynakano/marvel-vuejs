@@ -51,5 +51,6 @@ const { description } = defineProps({
 
 .biography h1 {
   margin-bottom: 10px;
+  font-weight: bold;
 }
 </style>
