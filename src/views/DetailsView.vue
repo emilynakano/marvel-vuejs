@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import Header from "@/components/Header.vue";
-import { TrinityRingsSpinner } from "epic-spinners";
 import { useRoute } from "vue-router";
+
+import Header from "@/components/Header.vue";
+import CharacterDetailsVue from "@/components/CharacterDetails.vue";
 
 const { params } = useRoute();
 const id = Number(params.id);
@@ -9,13 +10,7 @@ const id = Number(params.id);
 <template>
   <Header />
   <main>
-    <div class="spinner">
-      <trinity-rings-spinner
-        :animation-duration="1500"
-        :size="66"
-        color="rgb(197, 12, 12)"
-      />
-    </div>
+    <CharacterDetailsVue :id="id" />
   </main>
 </template>
 <style scoped lang="css">
