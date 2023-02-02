@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import handleScroll from "@/utils/handleScroll";
+import { onMounted } from "vue";
 import logo from "../assets/images/logo.png";
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
 </script>
 <template>
   <header id="header">
