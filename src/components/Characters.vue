@@ -39,7 +39,11 @@ onMounted(async () => {
 </script>
 <template>
   <main v-if="characters">
-    <div v-for="character in characters" :key="character.id" class="character">
+    <div
+      v-for="character in characters"
+      :key="character.id"
+      class="character fadeInUpBig"
+    >
       <div class="character transition">
         <div class="img-overflow">
           <img
