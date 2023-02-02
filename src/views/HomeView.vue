@@ -4,5 +4,12 @@ import Header from "@/components/Header.vue";
 </script>
 <template>
   <Header />
-  <Characters />
+  <main>
+    <Characters />
+  </main>
 </template>
+<style lang="css">
+main {
+  padding: 40px 0 20px 0;
+}
+</style>
