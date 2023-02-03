@@ -35,7 +35,7 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <main v-if="characters">
+  <div class="container" v-if="characters">
     <div
       v-for="character in characters"
       :key="character.id"
@@ -57,13 +57,12 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
-<style lang="css" scoped>
-main {
+<style scoped lang="css">
+.container {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   gap: 20px;
 }
@@ -105,7 +104,7 @@ img {
 
 h1 {
   font-size: 15px;
-  font-weight: 800;
+  font-weight: bold;
   color: var(--text-light);
   width: 110px;
   white-space: nowrap;

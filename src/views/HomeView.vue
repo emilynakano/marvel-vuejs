@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import Characters from "@/components/Characters.vue";
 import Header from "@/components/Header.vue";
+import Search from "@/components/Search.vue";
 import { TrinityRingsSpinner } from "epic-spinners";
 </script>
 <template>
   <Header />
   <main>
+    <div class="text">
+      <h1>MARVEL CHARACTERS LIST</h1>
+      <Search />
+    </div>
     <Characters />
     <div class="intersect" id="intersect">
       <trinity-rings-spinner
@@ -16,13 +21,24 @@ import { TrinityRingsSpinner } from "epic-spinners";
     </div>
   </main>
 </template>
-<style lang="css">
+<style scoped lang="css">
 main {
-  padding: 40px 0 20px 0;
+  padding: 75px 0 20px 0;
 }
 .intersect {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+h1 {
+  color: var(--text-dark);
+  font-weight: bolder;
+  font-size: 20px;
+}
+.text {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 </style>
