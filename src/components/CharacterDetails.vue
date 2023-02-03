@@ -74,6 +74,7 @@ onMounted(async () => {
 
 .main .name {
   margin-left: 110px;
+  margin-right: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
