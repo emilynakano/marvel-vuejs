@@ -4,25 +4,29 @@ import { TrinityRingsSpinner } from "epic-spinners";
 
 import {
   getCharacterById,
-  getCharacterMovies,
+  getCharacterComics,
 } from "@/services/charactersService";
 
 import type { ICharacter } from "@/interfaces/Character";
+import type { IComic } from "@/interfaces/Comic";
+
 import Biography from "./Biography.vue";
+import Comics from "./Comics.vue";
 
 const { id } = defineProps({
   id: { type: Number, default: 0 },
 });
 
 const character = ref<ICharacter | null>(null);
-const movies = ref(null);
+const comics = ref<IComic[] | null>(null);
+
 onMounted(async () => {
   const dataCharacter = await getCharacterById(id);
-  const dataMovies = await getCharacterMovies(id);
   character.value = dataCharacter;
-  movies.value = dataMovies;
+
+  const dataComics = await getCharacterComics(id);
+  comics.value = dataComics;
 });
-console.log(movies);
 </script>
 <template>
   <div class="container" v-if="character">
@@ -40,6 +44,7 @@ console.log(movies);
       <h1>{{ character.name }}</h1>
     </div>
     <Biography :description="character.description" />
+    <Comics :data="comics" />
   </div>
 
   <div v-else class="spinner">
