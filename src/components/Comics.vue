@@ -55,6 +55,7 @@ const comicsExist = comics && comics.length > 0;
   border-bottom-right-radius: 0;
 
   width: 154px;
+  height: 240px;
 }
 
 h2 {
