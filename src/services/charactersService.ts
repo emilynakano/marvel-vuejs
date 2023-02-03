@@ -10,4 +10,14 @@ async function getAllCharacters(offset: number) {
   return data.data.results;
 }
 
-export { getAllCharacters };
+async function getCharacterById(id: number) {
+  const { data } = await instance.get(`characters/${id}?${config}`);
+  return data.data.results[0];
+}
+
+async function getCharacterComics(id: number) {
+  const { data } = await instance.get(`characters/${id}/comics?${config}`);
+  return data.data.results;
+}
+
+export { getAllCharacters, getCharacterById, getCharacterComics };
