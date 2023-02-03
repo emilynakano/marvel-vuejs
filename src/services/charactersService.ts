@@ -17,7 +17,7 @@ async function getCharacterById(id: number) {
 
 async function getCharacterComics(id: number) {
   const { data } = await instance.get(`characters/${id}/comics?${config}`);
-  return data.data.results[0];
+  return data.data.results;
 }
 
 export { getAllCharacters, getCharacterById, getCharacterComics };

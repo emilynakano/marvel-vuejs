@@ -29,7 +29,7 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <div class="container" v-if="character">
+  <div class="container" v-if="character && comics">
     <div class="main">
       <img
         :src="character.thumbnail.path + '.' + character.thumbnail.extension"

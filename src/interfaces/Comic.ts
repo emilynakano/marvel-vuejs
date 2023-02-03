@@ -1,5 +1,9 @@
 interface IComic {
   id: number;
-  name: string;
+  title: string;
+  thumbnail: {
+    path: string;
+    extension: string;
+  };
 }
 export type { IComic };
