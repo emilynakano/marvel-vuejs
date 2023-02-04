@@ -2,12 +2,13 @@
 import Characters from "@/components/Characters.vue";
 import Header from "@/components/Header.vue";
 import Search from "@/components/Search.vue";
+import type { ICharacter } from "@/interfaces/Character";
 import { TrinityRingsSpinner } from "epic-spinners";
 import { ref } from "vue";
-const textSearch = ref("");
+const charactersSearch = ref<ICharacter[] | null>(null);
 
-function handleSearch(data: string) {
-  textSearch.value = data.trim();
+function handleSearch(data: ICharacter[] | null) {
+  charactersSearch.value = data;
 }
 </script>
 <template>
@@ -17,8 +18,8 @@ function handleSearch(data: string) {
       <h1>MARVEL CHARACTERS LIST</h1>
       <Search @change="handleSearch" />
     </div>
-    <Characters :search="textSearch" />
-    <div v-show="textSearch.length < 3" class="intersect" id="intersect">
+    <Characters :charactersSearch="charactersSearch" />
+    <div v-show="!charactersSearch" class="intersect" id="intersect">
       <trinity-rings-spinner
         :animation-duration="1500"
         :size="66"
