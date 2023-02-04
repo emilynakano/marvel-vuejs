@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import { getCharactersStartsWith } from "@/services/charactersService";
 import { ref } from "vue";
-
 const text = ref("");
 
 const emit = defineEmits(["change"]);
 
-function onChange() {
-  emit("change", text.value);
+async function onChange() {
+  let data = null;
+  if (text.value.trim().length > 0) {
+    data = await getCharactersStartsWith(text.value.trim());
+  }
+  emit("change", data);
 }
 </script>
 <template>
