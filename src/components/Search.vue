@@ -1,8 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+
+const text = ref("");
+
+const emit = defineEmits(["change"]);
+
+function onChange() {
+  emit("change", text.value);
+}
+</script>
 <template>
   <div class="field">
     <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="rotating" />
-    <input type="text" placeholder="SEARCH" />
+    <input v-model="text" @input="onChange" type="text" placeholder="SEARCH" />
     <div class="line"></div>
   </div>
 </template>

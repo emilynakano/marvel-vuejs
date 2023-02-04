@@ -3,13 +3,19 @@ import Characters from "@/components/Characters.vue";
 import Header from "@/components/Header.vue";
 import Search from "@/components/Search.vue";
 import { TrinityRingsSpinner } from "epic-spinners";
+import { ref } from "vue";
+const textSearch = ref("");
+
+function handleSearch(data: string) {
+  textSearch.value = data.trim();
+}
 </script>
 <template>
   <Header />
   <main>
     <div class="text">
       <h1>MARVEL CHARACTERS LIST</h1>
-      <Search />
+      <Search @change="handleSearch" />
     </div>
     <Characters />
     <div class="intersect" id="intersect">
