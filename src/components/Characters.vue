@@ -29,12 +29,16 @@ onUpdated(async () => {
 });
 
 watch(textSearch, async () => {
-  if (textSearch.value.length > 3) {
+  if (textSearch.value.length > 0) {
     const data = await getCharactersStartsWith(textSearch.value);
     characters.value = data.filter(
       (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
     );
-    console.log("up");
+  } else {
+    const data = await getAllCharacters(0);
+    characters.value = data.filter(
+      (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
+    );
   }
 });
 
