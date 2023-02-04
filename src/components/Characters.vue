@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from "vue";
+import { onMounted, onUpdated, ref, watch } from "vue";
 
 import { useRouter } from "vue-router";
 
@@ -12,6 +12,23 @@ const router = useRouter();
 
 const currentPage = ref(0);
 const characters = ref<ICharacter[] | []>([]);
+
+const textSearch = ref("");
+const props = defineProps({
+  search: {
+    type: String,
+    required: true,
+  },
+});
+
+onUpdated(async () => {
+  textSearch.value = props.search;
+});
+
+watch(textSearch, async () => {
+  //request the data from api
+  console.log("up");
+});
 
 onMounted(async () => {
   const data = await getAllCharacters(0);
