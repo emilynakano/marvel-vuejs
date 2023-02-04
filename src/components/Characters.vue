@@ -3,7 +3,10 @@ import { onMounted, onUpdated, ref, watch } from "vue";
 
 import { useRouter } from "vue-router";
 
-import { getAllCharacters } from "@/services/charactersService";
+import {
+  getAllCharacters,
+  getCharactersStartsWith,
+} from "@/services/charactersService";
 import infiniteScroll from "@/utils/infiniteScroll";
 
 import type { ICharacter } from "@/interfaces/Character";
@@ -26,8 +29,13 @@ onUpdated(async () => {
 });
 
 watch(textSearch, async () => {
-  //request the data from api
-  console.log("up");
+  if (textSearch.value.length > 3) {
+    const data = await getCharactersStartsWith(textSearch.value);
+    characters.value = data.filter(
+      (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
+    );
+    console.log("up");
+  }
 });
 
 onMounted(async () => {

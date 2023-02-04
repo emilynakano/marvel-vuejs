@@ -20,4 +20,16 @@ async function getCharacterComics(id: number) {
   return data.data.results;
 }
 
-export { getAllCharacters, getCharacterById, getCharacterComics };
+async function getCharactersStartsWith(search: string) {
+  const { data } = await instance.get(
+    `characters?nameStartsWith=${search}&${config}`
+  );
+  return data.data.results;
+}
+
+export {
+  getAllCharacters,
+  getCharacterById,
+  getCharacterComics,
+  getCharactersStartsWith,
+};
