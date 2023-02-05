@@ -3,10 +3,7 @@ import { onMounted, onUpdated, ref, watch } from "vue";
 
 import { useRouter } from "vue-router";
 
-import {
-  getAllCharacters,
-  getCharactersStartsWith,
-} from "@/services/charactersService";
+import { getAllCharacters } from "@/services/charactersService";
 import infiniteScroll from "@/utils/infiniteScroll";
 
 import type { ICharacter } from "@/interfaces/Character";
@@ -16,25 +13,24 @@ const router = useRouter();
 const currentPage = ref(0);
 const characters = ref<ICharacter[] | []>([]);
 
-const textSearch = ref("");
-const props = defineProps({
-  search: {
-    type: String,
-    required: true,
-  },
-});
+interface IProps {
+  dataSearch: ICharacter[] | null;
+}
+const dataSearch = ref<ICharacter[] | null>(null);
+const props = defineProps<IProps>();
 
 onUpdated(async () => {
-  textSearch.value = props.search;
+  dataSearch.value = props.dataSearch;
 });
 
-watch(textSearch, async () => {
-  if (textSearch.value.length > 3) {
-    const data = await getCharactersStartsWith(textSearch.value);
+watch(dataSearch, async () => {
+  if (dataSearch.value) {
+    characters.value = dataSearch.value;
+  } else {
+    const data = await getAllCharacters(0);
     characters.value = data.filter(
       (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
     );
-    console.log("up");
   }
 });
 
