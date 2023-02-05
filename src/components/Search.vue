@@ -27,13 +27,24 @@ async function onChange() {
 }
 </script>
 <template>
-  <div class="field" id="inputError">
+  <div class="container">
     <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="rotating" />
-    <input v-model="text" @input="onChange" type="text" placeholder="SEARCH" />
-    <div class="line"></div>
+
+    <div class="field" id="inputError">
+      <input
+        v-model="text"
+        @input="onChange"
+        type="text"
+        placeholder="SEARCH"
+      />
+      <div class="line"></div>
+    </div>
   </div>
 </template>
 <style lang="css" scoped>
+.container {
+  display: flex;
+}
 input {
   margin-left: 20px;
   background: 0;
@@ -90,6 +101,7 @@ input:focus + .line:after {
   }
 }
 .rotating {
+  margin-right: -10px;
   animation: rotating 2s linear infinite;
 }
 </style>
