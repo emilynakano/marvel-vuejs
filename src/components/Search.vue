@@ -35,7 +35,7 @@ async function onChange() {
 </template>
 <style lang="css" scoped>
 input {
-  margin-left: 10px;
+  margin-left: 20px;
   background: 0;
   border: 0;
   outline: none;

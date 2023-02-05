@@ -6,10 +6,14 @@ import { ProgressiveImage } from "vue-progressive-image";
 
 import { getAllCharacters } from "@/services/charactersService";
 import infiniteScroll from "@/utils/infiniteScroll";
+import getProportionalWidth from "@/utils/getProportionalWidth";
 
 import type { ICharacter } from "@/interfaces/Character";
 
 const router = useRouter();
+
+// to use in the css
+const widthCharacter = getProportionalWidth(160);
 
 const currentPage = ref(0);
 const characters = ref<ICharacter[] | []>([]);
@@ -17,6 +21,7 @@ const characters = ref<ICharacter[] | []>([]);
 interface IProps {
   dataSearch: ICharacter[] | null;
 }
+
 const dataSearch = ref<ICharacter[] | null>(null);
 const props = defineProps<IProps>();
 
@@ -77,10 +82,10 @@ onMounted(async () => {
 </template>
 <style scoped lang="css">
 .container {
+  padding-left: 25px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  gap: 25px;
 }
 
 .character {
@@ -90,7 +95,7 @@ onMounted(async () => {
 
   position: relative;
 
-  width: 160px;
+  width: v-bind(widthCharacter);
   background-color: var(--background);
   border-bottom-right-radius: 20px;
 
@@ -107,12 +112,12 @@ onMounted(async () => {
   background-size: contain;
 
   overflow: hidden;
-  width: 160px;
+  width: v-bind(widthCharacter);
   height: 200px;
   object-fit: cover;
 }
 .img {
-  width: 160px;
+  width: v-bind(widthCharacter);
   height: 200px;
   object-fit: cover;
   background-size: contain;
