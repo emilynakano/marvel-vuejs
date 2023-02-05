@@ -7,9 +7,7 @@ interface Props {
 
 const { data } = defineProps<Props>();
 
-const comics = data?.filter(
-  (c) => !c.thumbnail.path.includes("image_not_available")
-);
+const comics = data;
 
 const comicsExist = comics && comics.length > 0;
 </script>

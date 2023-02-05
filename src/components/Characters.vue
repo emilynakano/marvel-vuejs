@@ -28,27 +28,18 @@ watch(dataSearch, async () => {
     characters.value = dataSearch.value;
   } else {
     const data = await getAllCharacters(0);
-    characters.value = data.filter(
-      (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
-    );
+    characters.value = data;
   }
 });
 
 onMounted(async () => {
   const data = await getAllCharacters(0);
-  characters.value = data.filter(
-    (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
-  );
+  characters.value = data;
 });
 
 watch(currentPage, async () => {
   const newData = await getAllCharacters(currentPage.value);
-  characters.value = [
-    ...characters.value,
-    ...newData.filter(
-      (c: ICharacter) => !c.thumbnail.path.includes("image_not_available")
-    ),
-  ];
+  characters.value = [...characters.value, ...newData];
 });
 
 onMounted(async () => {
