@@ -2,13 +2,30 @@
 @import url('./transitions/shake.css');
 
 :root {
-  --background: #1b1b1b;
+	--background: #1b1b1b;
 	--background-light: #ffffff;
 	--details: rgb(197, 12, 12);
 	--text-light: white;
 	--text-dark: #1b1b1b;
-}
 
+  --progressive-image-background-color: #1b1b1b;
+  
+  --progressive-image-blur: 16px;
+  
+  --progressive-image-main-fade-ease: ease-in;
+  --progressive-image-main-fade-speed: 0.9s;
+  
+  --progressive-image-placeholder-fade-ease: ease-out;
+  --progressive-image-placeholder-fade-speed: 1.2s;
+
+  --progressive-image-skeleton-speed: 2s;
+  --progressive-image-skeleton-background: linear-gradient(
+    90deg,
+    rgb(197, 12, 12) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgb(197, 12, 12) 100%
+  );
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

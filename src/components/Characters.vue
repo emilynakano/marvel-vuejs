@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUpdated, ref, watch } from "vue";
-
 import { useRouter } from "vue-router";
+
+import { ProgressiveImage } from "vue-progressive-image";
 
 import { getAllCharacters } from "@/services/charactersService";
 import infiniteScroll from "@/utils/infiniteScroll";
@@ -56,7 +57,10 @@ onMounted(async () => {
     >
       <div class="transition">
         <div class="img-overflow">
-          <img
+          <ProgressiveImage
+            placeholder-src="http://i.annihil.us/u/prod/marvel/i/mg/8/d0/4ce5a37a830a3.jpg"
+            object-cover
+            class="img"
             :src="
               character.thumbnail.path + '.' + character.thumbnail.extension
             "
@@ -100,13 +104,18 @@ onMounted(async () => {
 }
 
 .img-overflow {
+  background-size: contain;
+
   overflow: hidden;
   width: 160px;
   height: 200px;
+  object-fit: cover;
 }
-img {
+.img {
   width: 160px;
   height: 200px;
+  object-fit: cover;
+  background-size: contain;
 }
 
 .content {
@@ -141,7 +150,7 @@ h1 {
   background-position: 100% 100%;
 }
 
-.transition:hover img {
+.transition:hover .img {
   transform: scale(1.1);
 }
 </style>

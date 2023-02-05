@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { IComic } from "@/interfaces/Comic";
+import { ProgressiveImage } from "vue-progressive-image";
 
 interface Props {
   data: IComic[] | null;
@@ -15,7 +16,12 @@ const comicsExist = comics && comics.length > 0;
   <h1 v-if="comicsExist">COMICS</h1>
   <div v-if="comicsExist" class="container">
     <div v-for="comic in comics" :key="comic.id" class="comic">
-      <img :src="comic.thumbnail.path + '.' + comic.thumbnail.extension" />
+      <ProgressiveImage
+        placeholder-src="http://i.annihil.us/u/prod/marvel/i/mg/8/d0/4ce5a37a830a3.jpg"
+        object-cover
+        class="img"
+        :src="comic.thumbnail.path + '.' + comic.thumbnail.extension"
+      />
       <h2>
         {{ comic.title.split("#")[0] }}
       </h2>
@@ -36,8 +42,7 @@ const comicsExist = comics && comics.length > 0;
   width: 160px;
   height: 300px;
   border-radius: 25px;
-  border: 3px solid black;
-
+  border: solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,11 +52,7 @@ const comicsExist = comics && comics.length > 0;
   text-overflow: ellipsis;
 }
 
-.comic img {
-  border-radius: 20px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-
+.comic .img {
   width: 154px;
   height: 240px;
 }
