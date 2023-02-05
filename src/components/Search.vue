@@ -1,20 +1,33 @@
 <script setup lang="ts">
+import type { ICharacter } from "@/interfaces/Character";
 import { getCharactersStartsWith } from "@/services/charactersService";
 import { ref } from "vue";
 const text = ref("");
+let data = ref<ICharacter[] | null>(null);
 
 const emit = defineEmits(["change"]);
 
 async function onChange() {
-  let data = null;
+  data.value = null;
+
+  const input = document.getElementById("inputError");
+
   if (text.value.trim().length > 0) {
-    data = await getCharactersStartsWith(text.value.trim());
+    data.value = await getCharactersStartsWith(text.value.trim());
   }
-  emit("change", data);
+  if (data.value?.length === 0) {
+    input?.classList.add("shake");
+    text.value = "";
+    data.value = null;
+  }
+  setTimeout(() => {
+    input?.classList.remove("shake");
+  }, 1000);
+  emit("change", data.value);
 }
 </script>
 <template>
-  <div class="field">
+  <div class="field" id="inputError">
     <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="rotating" />
     <input v-model="text" @input="onChange" type="text" placeholder="SEARCH" />
     <div class="line"></div>
