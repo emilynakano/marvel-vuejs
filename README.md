@@ -2,7 +2,7 @@
 
 ## 📝 Description
 
-This project consumes the official Marvel API. Shows all available characters, a brief biography and the comics in which he participated. It was developed to better understand VueJS concepts. Besides that, infinite scroll has also been implemented as a new learning concept.
+This project consumes the official Marvel API. Shows all available characters, a brief biography and the comics in which they participated. It was developed to better understand VueJS concepts. Besides that, infinite scroll has also been implemented as a new learning concept.
 
 ## 🏗️ Built with
 
@@ -40,10 +40,10 @@ This project consumes the official Marvel API. Shows all available characters, a
   1. Create an env file
     
        ```sh
-       mkdir .env
+       touch .env
        ```
     
-2. In your code editor, set up the following variables:
+2. In the .env file, set up the following variables:
     
     Variable | Type | Description
     --- | --- | ---
