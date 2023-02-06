@@ -38,18 +38,30 @@ watch(dataSearch, async () => {
   }
 });
 
-onMounted(async () => {
-  const data = await getAllCharacters(0);
-  characters.value = data;
-});
-
 watch(currentPage, async () => {
   const newData = await getAllCharacters(currentPage.value);
   characters.value = [...characters.value, ...newData];
 });
 
+watch(characters, async () => {
+  // not cache data from search to evit bugs
+  if (dataSearch.value) {
+    return;
+  }
+
+  // cache data from api to not unnecessary re render
+  characters.value &&
+    localStorage.setItem("data@MARVEL", JSON.stringify(characters.value));
+});
+
 onMounted(async () => {
   infiniteScroll({ currentPage: currentPage, increment: 25 });
+
+  // verify if data is chached
+  let data = localStorage.getItem("data@MARVEL");
+  if (data) {
+    characters.value = JSON.parse(data);
+  }
 });
 </script>
 <template>
