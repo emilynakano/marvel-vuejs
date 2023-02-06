@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 
-import Header from "@/components/Header.vue";
-import CharacterDetails from "@/components/CharacterDetails.vue";
+import { Header, CharacterDetails } from "@/components";
 
 const { params } = useRoute();
 const id = Number(params.id);

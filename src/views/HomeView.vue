@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import Characters from "@/components/Characters.vue";
-import Header from "@/components/Header.vue";
-import Search from "@/components/Search.vue";
-import type { ICharacter } from "@/interfaces/Character";
-import { TrinityRingsSpinner } from "epic-spinners";
 import { ref } from "vue";
+
+import { TrinityRingsSpinner } from "epic-spinners";
+
+import { Header, Search, Characters } from "@/components";
+import type { ICharacter } from "@/interfaces/Character";
+
 const dataSearch = ref<ICharacter[] | null>(null);
 
 function handleSearch(data: ICharacter[] | null) {
