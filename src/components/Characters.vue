@@ -52,6 +52,7 @@ watch(characters, async () => {
   // cache data from api to not unnecessary re render
   characters.value &&
     localStorage.setItem("data@MARVEL", JSON.stringify(characters.value));
+  localStorage.setItem("currPage@MARVEL", JSON.stringify(currentPage.value));
 });
 
 onMounted(async () => {
@@ -59,8 +60,13 @@ onMounted(async () => {
 
   // verify if data is chached
   let data = localStorage.getItem("data@MARVEL");
-  if (data) {
+  let indexPage = localStorage.getItem("currPage@MARVEL");
+  if (data && indexPage) {
     characters.value = JSON.parse(data);
+    currentPage.value = Number(JSON.parse(indexPage)) + 25;
+  } else {
+    const dataCharacters = await getAllCharacters(0);
+    characters.value = dataCharacters;
   }
 });
 </script>
