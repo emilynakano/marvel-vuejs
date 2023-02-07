@@ -30,6 +30,7 @@ const comicsExist = comics && comics.length > 0;
 </template>
 <style scoped lang="css">
 .container {
+  position: relative;
   margin-top: 25px;
   display: flex;
   gap: 20px;
@@ -39,6 +40,7 @@ const comicsExist = comics && comics.length > 0;
 }
 
 .comic {
+  z-index: -10;
   width: 160px;
   height: 300px;
   border-radius: 25px;
